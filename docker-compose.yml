@@ -27,8 +27,8 @@ services:
 
   semaphore:
     restart: unless-stopped
-    ports:
-      - 3000:3000
+    expose:
+      - 3000
     image: semaphoreui/semaphore:latest
     environment:
       SEMAPHORE_DB_USER: semaphore
@@ -59,7 +59,7 @@ services:
       - mysql # for postgres, change to: postgres
     networks:
       - semaphore
-      - backend
+      - proxy 
 
 volumes:
   semaphore-mysql: # to use postgres, switch to: semaphore-postgres
@@ -68,4 +68,4 @@ networks:
   semaphore:
   proxy:
     external: true
-    name: http-proxy_backend
+    name: http-proxy_proxy
