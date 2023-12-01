@@ -69,5 +69,18 @@
  		"webhook": "",
  		"max_parallel_tasks": 0
  	},
- 	"billing_enabled": false
+ 	"billing_enabled": false,
+	"oidc_providers": {
+		"google": {
+			"color": "blue",
+			"icon": "google",
+			"display_name": "Sign in with Google",
+			"provider_url": "https://accounts.google.com",
+			"client_id": "",
+			"client_secret": "",
+			"redirect_url": "https://semaphore.simulalab.org/api/auth/oidc/google/redirect",
+			"username_claim": "email",
+			"name_claim": "name"
+		}
+	}
 }
