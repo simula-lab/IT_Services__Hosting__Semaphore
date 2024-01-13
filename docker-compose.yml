@@ -61,9 +61,11 @@ services:
       - semaphore
       - proxy 
     volumes:
+      - semaphore-home:/home/semaphore/
       - ./config.json:/etc/semaphore/config.json
 
 volumes:
+  semaphore-home:
   semaphore-mysql: # to use postgres, switch to: semaphore-postgres
 
 networks:
