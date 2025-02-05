@@ -29,7 +29,7 @@ services:
     restart: unless-stopped
     expose:
       - 3000
-    image: semaphoreui/semaphore:latest
+    image: semaphoreui/semaphore:${SEMAPHORE_VERSION:-latest}
     environment:
       SEMAPHORE_DB_USER: semaphore
       SEMAPHORE_DB_PASS: ${MYSQL_PASSWORD}
@@ -51,7 +51,7 @@ services:
       # SEMAPHORE_LDAP_PASSWORD: 'ldap_bind_account_password'
       # SEMAPHORE_LDAP_DN_SEARCH: 'dc=local,dc=example,dc=com'
       # SEMAPHORE_LDAP_SEARCH_FILTER: "(\u0026(uid=%s)(memberOf=cn=ipausers,cn=groups,cn=accounts,dc=local,dc=example,dc=com))"
-
+      TZ: UTC
       VIRTUAL_HOST: ${VIRTUAL_HOST}
       LETSENCRYPT_HOST: ${VIRTUAL_HOST}
       LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
@@ -63,6 +63,10 @@ services:
     volumes:
       - semaphore-home:/home/semaphore/
       - ./config.json:/etc/semaphore/config.json
+
+  #semaphore-runner:
+  #      image: public.ecr.aws/semaphore/pro/runner:v2.12.4
+  #      environment:
 
 volumes:
   semaphore-home:
